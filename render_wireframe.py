@@ -121,7 +121,8 @@ def render_wireframe(context, animation, line_width):
             modifier.levels = level
 
         for obj, visible in zip(objects, old_data["visible"]):
-            obj.hide_set(visible)
+            if obj.name in context.view_layer.objects:
+                obj.hide_set(visible)
         
         space.region_3d.view_matrix = old_data['view_matrix']
         space.region_3d.view_perspective = old_data['view_pers']
@@ -132,8 +133,7 @@ def render_wireframe(context, animation, line_width):
             setattr(overlay, attr, old_value)
         
         for obj in old_data['selected_objects']:
-            if obj.name in context.view_layer.objects:
-                obj.select_set(True)
+            obj.select_set(True)
 
     # A short delay is needed for blender to update the viewport
     # incase the ui_line_width for rendering is not the same as the one currently used.
