@@ -91,22 +91,20 @@ def render_wireframe(context, animation, line_width):
     optimal_display = context.scene.wireframe_renderer_properties.optimal_display
     render_levels = context.scene.wireframe_renderer_properties.render_levels
     optimal = None if optimal_display == 'CUSTOM' else optimal_display == 'ON'
-    if optimal_display != 'CUSTOM':
-        for obj in objects:
-            if not obj.hide_get():
-                for modifier in obj.modifiers:
-                    if modifier.show_render != modifier.show_viewport:
-                        print(modifier.name)
-                        modifier.show_viewport = modifier.show_render
-                        old_data['show_viewport'].append(modifier)
-                    if optimal != None and modifier.type == 'SUBSURF':
-                        if modifier.show_only_control_edges != optimal:
-                            modifier.show_only_control_edges = optimal
-                            old_data['optimal_display'].append(modifier)
-                    if render_levels and hasattr(modifier, 'render_levels'):
-                        if modifier.levels != modifier.render_levels:
-                            old_data['render_levels'].append((modifier, modifier.levels))
-                            modifier.levels = modifier.render_levels
+    for obj in objects:
+        if not obj.hide_get():
+            for modifier in obj.modifiers:
+                if modifier.show_render != modifier.show_viewport:
+                    modifier.show_viewport = modifier.show_render
+                    old_data['show_viewport'].append(modifier)
+                if optimal != None and hasattr(modifier, 'show_only_control_edges'):
+                    if modifier.show_only_control_edges != optimal:
+                        modifier.show_only_control_edges = optimal
+                        old_data['optimal_display'].append(modifier)
+                if render_levels and hasattr(modifier, 'render_levels'):
+                    if modifier.levels != modifier.render_levels:
+                        old_data['render_levels'].append((modifier, modifier.levels))
+                        modifier.levels = modifier.render_levels
 
 
     def render_and_reset():
