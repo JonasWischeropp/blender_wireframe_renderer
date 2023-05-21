@@ -86,7 +86,8 @@ def render_wireframe(context, animation, line_width):
     space.region_3d.view_perspective = 'CAMERA'
     
     for obj in objects:
-        obj.hide_set(obj.hide_render)
+        if obj.name in context.view_layer.objects:
+            obj.hide_set(obj.hide_render)
     
     optimal_display = context.scene.wireframe_renderer_properties.optimal_display
     render_levels = context.scene.wireframe_renderer_properties.render_levels
@@ -131,7 +132,8 @@ def render_wireframe(context, animation, line_width):
             setattr(overlay, attr, old_value)
         
         for obj in old_data['selected_objects']:
-            obj.select_set(True)
+            if obj.name in context.view_layer.objects:
+                obj.select_set(True)
 
     # A short delay is needed for blender to update the viewport
     # incase the ui_line_width for rendering is not the same as the one currently used.
