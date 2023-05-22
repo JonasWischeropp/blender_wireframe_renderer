@@ -185,7 +185,7 @@ class WireframeRendererProperties(bpy.types.PropertyGroup):
     )
     optimal_display: bpy.props.EnumProperty(
         name="Optimal Display",
-        description="Should 'Optimal Display' be used on Subdivision Surface Modifiers",
+        description="Should 'Optimal Display' be used on modifiers (e.g. subsurf, multires)",
         items=[
             ('CUSTOM', "As is", "Does not change Optimal Display setting"),
             ('ON', "On", "Renders all with Optimal Display"),
