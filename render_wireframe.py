@@ -58,10 +58,10 @@ def render_wireframe(context, animation, line_width):
         'overlay_attrs': [attr for attr in dir(overlay) if attr.startswith("show_")],
         'selected_objects': context.selected_objects,
         'other_attrs': [
-            [renderer, "film_transparent", True],
-            [renderer, "engine", 'CYCLES'],
-            [space.shading, "type", 'RENDERED'],
-            [bpy.context.preferences.view, "ui_line_width", line_width]
+            [renderer, 'film_transparent', True],
+            [renderer, 'engine', 'CYCLES'],
+            [space.shading, 'type', 'RENDERED'],
+            [bpy.context.preferences.view, 'ui_line_width', line_width]
         ],
         'view_matrix': space.region_3d.view_matrix.copy(),
         'view_pers': space.region_3d.view_perspective,
@@ -177,9 +177,9 @@ class WireframeRendererProperties(bpy.types.PropertyGroup):
         name="Line Thickness",
         description="Line Thickness\nPreferences>Interface>Display>Line Width",
         items=[
-            ('AUTO', 'Auto', 'Uses width defined under Preferences>Interface>Display>Line Width'),
-            ('THICK', 'Thick', 'Thicker Lines'),
-            ('THIN', 'Thin', 'Thin Lines'),
+            ('AUTO', "Auto", "Uses width defined under Preferences>Interface>Display>Line Width"),
+            ('THICK', "Thick", "Thicker Lines"),
+            ('THIN', "Thin", "Thin Lines"),
         ],
         default='AUTO',
     )
