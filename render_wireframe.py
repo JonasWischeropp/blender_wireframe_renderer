@@ -18,12 +18,12 @@
 bl_info = {
     "name": "Render Wireframe",
     "author": "Jonas Wischeropp",
-    "version": (1, 2),
+    "version": (1, 3),
     "blender": (2, 82, 0),
-    "location": "Render Properties > Wireframe Renderer or Render > Render Wireframe (Image|Animation)",
+    "location": "Render Properties > Wireframe Renderer",
     "description": "Renders the wireframe of the active scene",
     "warning": "",
-    "doc_url": "",
+    "doc_url": "https://github.com/JonasWischeropp/blender_wireframe_renderer",
     "category": "Render",
 }
 
