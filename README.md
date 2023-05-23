@@ -5,7 +5,7 @@ It's done by using and extending the technique described [here](https://www.arts
 # Setup
 1. Download [render_wireframe.py](render_wireframe.py)  
     - Click on [render_wireframe.py](render_wireframe.py)  
-    - Click on the three dots above the document and choose *Download*
+    - Click on the three dots above the document on the right sight and choose *Download*
 2. Install inside Blender  
     - Navigate to Edit > Preferences > Add-ons  
     - Press *Install* and select the downloaded file
