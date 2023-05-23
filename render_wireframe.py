@@ -33,6 +33,8 @@ import bpy
 # This script automates and extends the technique described in the following article by D. Austin:
 # https://www.artstation.com/blogs/daustindoodles/GKpw/quick-and-easy-wireframe-renders-in-blender
 
+issue_url = "https://github.com/JonasWischeropp/blender_wireframe_renderer/issues"
+
 # Helper functions
 def get_3D_view_space(context):
     for area in context.screen.areas:
@@ -145,6 +147,7 @@ def render_wireframe(context, animation, line_width):
     # Show render    
     bpy.ops.render.view_show('INVOKE_DEFAULT')
 
+error = None
 class WireframeRenderer(bpy.types.Operator):
     """Renders the wireframe of the active scene"""
     bl_idname="render.wireframe"
@@ -156,6 +159,15 @@ class WireframeRenderer(bpy.types.Operator):
         default=False,
     )
 
+    @staticmethod
+    def draw_error_popup(self, context):
+        layout = self.layout
+        layout.label(text="Please report this issue and include the error message.")
+        layout.label(text="To copy the text you can open the console (Topbar: Window > Toggle System Console).")
+        layout.label(text=f"An issue can be reported here: {issue_url}")
+        layout.label(text="Error message:")
+        layout.label(text=f"{error}")
+
     @classmethod
     def poll(cls, context):
         space = get_3D_view_space(context)
@@ -164,7 +176,12 @@ class WireframeRenderer(bpy.types.Operator):
         return space != None
     
     def execute(self, context):
-        render_wireframe(context, self.animation, context.scene.wireframe_renderer_properties.line_thickness)
+        try:
+            render_wireframe(context, self.animation, context.scene.wireframe_renderer_properties.line_thickness)
+        except Exception as e:
+            global error
+            error = e
+            context.window_manager.popup_menu(self.draw_error_popup, title="Unknown Error", icon='ERROR')
         return {'FINISHED'}
 
 def render_wireframe_image_op(self, context):
