@@ -14,6 +14,10 @@ It's done by using and extending the technique described [here](https://www.arts
 # How to Use
 The functionality and settings are exposed in the **Render Properties** panel under **Wireframe Renderer**.  
 Or for faster access the render can be triggered from the top bar under **Render**.  
+<p align="center">
+  <img src="topbar.png"/>
+  <img src="render_properties.png"/>
+</p>
 
 # Feedback or Issues
 If you have feedback or run into issues please contact me.  
