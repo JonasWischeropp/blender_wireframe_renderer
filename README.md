@@ -9,6 +9,7 @@ It's done by using and extending the technique described [here](https://www.arts
 2. Install inside Blender  
     - Navigate to Edit > Preferences > Add-ons  
     - Press *Install* and select the downloaded file
+    - Tick the box next to `Render: Render Wireframe`, to activate the addon
 
 # How to Use
 The functionality and settings are exposed in the **Render Properties** panel under **Wireframe Renderer**.  
